@@ -1,14 +1,4 @@
 <!DOCTYPE html><html lang="en"><head>
-
-
-
-
-
-
-
-
-
-
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
     <title>
@@ -20,7 +10,6 @@
     <link href="css/default-home-page.css" rel="stylesheet"><!--[if lt IE 9]>
       <link rel="stylesheet" href="/css/default-ie.css" />
     <![endif]-->
-
     <script src="../www.google.com/js/gweb/analytics/autotrack.js">
 </script>
     <script>
@@ -383,7 +372,41 @@ li.c4 {margin-top: -35px;}
         </ul>
         <div class="clearfix"></div>
       </div>
-    </div><script src="js/view.js">
+    </div>
+
+<script>
+// ============音频新增部分============
+// 点击音效
+const tabSwitchSound = new Audio("music/tab_Switch.wav");
+tabSwitchSound.volume = 0.6;
+document.addEventListener("click", ()=>{
+    tabSwitchSound.currentTime = 0;
+    tabSwitchSound.play().catch(e=>{});
+});
+
+// 页面随机背景音乐
+const bgMusicList = [
+    "letsgo.m4a",
+    "psvita.m4a",
+    "tolietstory.m4a"
+];
+const bgAudio = new Audio();
+bgAudio.volume = 0.7;
+const randomIndex = Math.floor(Math.random() * bgMusicList.length);
+bgAudio.src = bgMusicList[randomIndex];
+
+let audioStarted = false;
+// 用户交互之后才播放（浏览器策略）
+document.addEventListener("click", function startAudioOnce(){
+    if(!audioStarted){
+        audioStarted = true;
+        bgAudio.play().catch(err=>console.log("背景音乐播放失败",err));
+    }
+},{once:true});
+// =====================================
+</script>
+
+<script src="js/view.js">
 </script><script>
 (function(){if(testCanvas())var footer=new androidExternal.animations.footer(document.getElementById("canvas-android"));var search=new androidSearch;var moremenu=new androidMore})();
     </script><script src="js/home-page-view.js">
@@ -412,5 +435,4 @@ window.___gcfg = {lang: 'en'};
       })();
     </script>
   
-
 </body></html>
