@@ -478,6 +478,37 @@ li.c4 {margin-top: -35px;}
         <div class="home-marquee-carousel-tablet-and-phone">
           <ul class="carousel-content">
             <li class="home-marquee-carousel-table-and-phone-item c1">
+              <img alt="" class="home-marquee-img-ics-tablet-and-phone" src="images/marquee_jb.png">
+              <h2 id="ics-h2">
+                Introducing Gravel,<br>
+                The Nerd
+              </h2>
+              <p class="home-marquee-gnode">
+                Welcome to my website
+               A Normal Guy Love roblox and source games
+              </p>
+              <p>
+                <a class="button" data-g-event="Home Marquee" data-g-label="JB Learn More" href="https://github.com/gr4v3l">Explore what's new</a>
+              </p>
+            </li>
+            <li class="home-marquee-carousel-table-and-phone-item c2">
+              <img alt="" class="home-marquee-img-sdk-tablet-and-phone c3" src="images/marquee_play.png">
+              <h2>
+                Games and SoftWare on Gravel Market
+              </h2>
+              <p>
+                Explore a growing collection software and games on Gravel Market
+                  now<br>
+                we have lots software and games for old devices!
+              </p>
+              <p>
+                <em>Click The Button Try it (WIP)</em>
+              </p>
+              <p>
+                <a class="button" data-g-event="Home Marquee" data-g-label="Play magazines" href="https://gr4v3l.github.io/GravelMarket/">Learn more</a>
+              </p>
+            </li>
+            <li class="home-marquee-carousel-table-and-phone-item">
               <div class="home-marquee-video-tablet-and-phone" id="home-marquee-player-tablet-and-phone"></div>
               <div class="home-marquee-page-promo">
                 <p>
@@ -485,48 +516,14 @@ li.c4 {margin-top: -35px;}
                 </p>
               </div>
             </li>
-            <li class="home-marquee-carousel-table-and-phone-item c2">
-              <img alt="" class="home-marquee-img-ics-tablet-and-phone" src="images/marquee_jb.png">
-              <h2 id="ics-h2">
-                Introducing Android 4.1,<br>
-                Jelly Bean
-              </h2>
-              <p class="home-marquee-gnode">
-                Android 4.1, Jelly Bean, is the fastest and smoothest version of Android yet. Jelly
-                Bean improves on the simplicity and beauty of Android 4.0, and introduces a new
-                Google search experience on Android.
-              </p>
-              <p>
-                <a class="button" data-g-event="Home Marquee" data-g-label="JB Learn More" href="http://www.android.com/whatsnew/">Explore what's new</a>
-              </p>
-            </li>
-            <li class="home-marquee-carousel-table-and-phone-item">
-              <img alt="" class="home-marquee-img-sdk-tablet-and-phone c3" src="images/marquee_play.png">
-              <h2>
-                Magazines and TV shows on Google Play
-              </h2>
-              <p>
-                Explore a growing collection of magazines and TV shows on Google Play, along with
-                the world's largest<br>
-                e-bookstore, millions of songs and thousands of movies, and over 600,000 apps and
-                games.
-              </p>
-              <p>
-                <em>recommend use chrome 40+ and ie9+ </em>
-              </p>
-              <p>
-                <a class="button" data-g-event="Home Marquee" data-g-label="Play magazines" href="https://gr4v3l.github.io/GravelMarket/">Learn more</a>
-              </p>
-            </li>
             <li class="home-marquee-carousel-table-and-phone-item c4">
               <img alt="" class="home-marquee-img-apps-tablet-and-phone" src="images/marquee_apps_static.png">
               <h2>
                 Discover new apps
               </h2>
               <p>
-                Google Play has hundreds of thousands of apps. Start exploring innovative ways to
-                customize your mobile experience: become more productive, download games, discover
-                new books, apps, and movies—and share anything.
+                Gravel Market has hundreds of thousands of apps. Start exploring innovative ways to
+                customize your mobile experience: become more productive, download games, share anything.
               </p>
               <p>
                 <a class="button" data-g-event="Home Marquee" data-g-label="Apps Learn More" href="http://www.android.com/apps/">Learn more</a>
@@ -645,6 +642,45 @@ document.querySelectorAll("li.home-nav-item, .slideshow-nav-item").forEach(funct
         panelRightSound.play().catch(function(e){});
     });
 });
+
+// 手机版左右箭头按钮：播放音效 + 新标签页打开当前项链接（不切换轮播）
+function getCurrentMobileSlide(){
+    var items = document.querySelectorAll(".home-marquee-carousel-table-and-phone-item");
+    var container = document.querySelector(".home-marquee-carousel-tablet-and-phone");
+    if(!container || items.length === 0) return null;
+    var containerRect = container.getBoundingClientRect();
+    var containerCenter = containerRect.left + containerRect.width / 2;
+    var bestItem = null;
+    var bestDist = Infinity;
+    for(var i=0;i<items.length;i++){
+        var rect = items[i].getBoundingClientRect();
+        var itemCenter = rect.left + rect.width / 2;
+        var dist = Math.abs(itemCenter - containerCenter);
+        if(dist < bestDist){
+            bestDist = dist;
+            bestItem = items[i];
+        }
+    }
+    return bestItem;
+}
+document.querySelectorAll(".marquee-left, .marquee-right").forEach(function(arrow){
+    arrow.addEventListener("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        // 播放音效
+        panelRightSound.currentTime = 0;
+        panelRightSound.play().catch(function(){});
+        // 获取当前轮播项的链接，新标签页打开
+        var currentSlide = getCurrentMobileSlide();
+        if(currentSlide){
+            var link = currentSlide.querySelector(".button");
+            if(link && link.href){
+                window.open(link.href, "_blank");
+            }
+        }
+        return false;
+    });
+});
 // 背景音乐由 WinPlay3 播放器统一控制，见下方播放器脚本
 // =====================================
 </script>
@@ -720,7 +756,7 @@ window.___gcfg = {lang: 'en'};
     <div class="wp-help-body">
         <div class="wp-help-os" id="wpHelpOS">Detecting OS...</div>
         <img class="wp-help-logo" id="wpHelpLogo" src="images/head.png" alt="logo">
-        <div class="wp-help-copyright">Copyright © 1981-1999, Microsoft Corp.</div>
+        <div class="wp-help-copyright">Copyright © Gr4v3l</div>
         <div class="wp-help-version" id="wpHelpVersion">SiteVersion 24</div>
         <button class="wp-help-ok" id="wpHelpOk">OK</button>
     </div>
