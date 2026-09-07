@@ -22,6 +22,166 @@ li.c4 {margin-top: -35px;}
     img.c3 {margin-bottom: 55px; padding-top:55px;}
     li.c2 {margin-top: -45px;}
     li.c1 {margin-top: -115px;}
+
+/* ===== WinPlay3 风格播放器 ===== */
+#winplay3-player{
+    position:fixed;
+    top:80px;
+    right:20px;
+    width:280px;
+    background:#c0c0c0;
+    border:2px solid;
+    border-color:#ffffff #808080 #808080 #ffffff;
+    box-shadow:1px 1px 0 #000;
+    font-family:"MS Sans Serif","Tahoma",sans-serif;
+    font-size:11px;
+    z-index:9999;
+    user-select:none;
+    display:none;
+}
+#winplay3-player.show{ display:block; }
+.wp-titlebar{
+    background:linear-gradient(90deg,#000080,#1084d0);
+    color:#fff;
+    padding:3px 6px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    cursor:move;
+    font-weight:bold;
+    font-size:12px;
+}
+.wp-titlebar .wp-title{
+    text-shadow:1px 1px 0 #000;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.wp-close{
+    width:16px;height:16px;
+    background:#c0c0c0;
+    border:1px solid;
+    border-color:#ffffff #808080 #808080 #ffffff;
+    color:#000;
+    font-size:10px;
+    line-height:14px;
+    text-align:center;
+    cursor:pointer;
+    padding:0;
+    font-weight:bold;
+    font-family:inherit;
+}
+.wp-close:active{ border-color:#808080 #ffffff #ffffff #808080; }
+.wp-menubar{
+    padding:2px 6px;
+    display:flex;
+    gap:12px;
+    color:#000;
+    border-bottom:1px solid #808080;
+}
+.wp-menubar span{ cursor:default; }
+.wp-menubar span:hover{ text-decoration:underline; }
+.wp-lcd{
+    background:#000;
+    margin:6px;
+    padding:6px 8px;
+    border:2px solid;
+    border-color:#808080 #ffffff #ffffff #808080;
+    font-family:"Courier New",monospace;
+}
+.wp-lcd-top{
+    display:flex;
+    justify-content:space-between;
+    color:#00ff00;
+    font-size:9px;
+    margin-bottom:4px;
+    opacity:0.7;
+}
+.wp-lcd-main{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    color:#00ff00;
+    font-size:14px;
+    font-weight:bold;
+    text-shadow:0 0 4px #00ff00;
+}
+.wp-lcd-main #wp-track-num{
+    font-size:18px;
+    min-width:28px;
+}
+.wp-lcd-main #wp-track-name{
+    flex:1;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:12px;
+}
+.wp-lcd-main #wp-time{
+    font-size:14px;
+    min-width:50px;
+    text-align:right;
+}
+.wp-controls{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6px 8px;
+}
+.wp-buttons{
+    display:flex;
+    gap:3px;
+}
+.wp-btn{
+    width:28px;height:24px;
+    background:#c0c0c0;
+    border:2px solid;
+    border-color:#ffffff #808080 #808080 #ffffff;
+    cursor:pointer;
+    font-size:10px;
+    padding:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#000;
+    font-family:inherit;
+}
+.wp-btn:active{
+    border-color:#808080 #ffffff #ffffff #808080;
+    padding:1px 0 0 1px;
+}
+.wp-btn.playing{
+    border-color:#808080 #ffffff #ffffff #808080;
+    background:#a0a0a0;
+}
+.wp-volume{
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+.wp-volume input[type="range"]{
+    width:70px;
+    height:16px;
+    cursor:pointer;
+    accent-color:#000080;
+}
+.wp-toggle-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:40px;height:40px;
+    background:#c0c0c0;
+    border:2px solid;
+    border-color:#ffffff #808080 #808080 #ffffff;
+    cursor:pointer;
+    z-index:9998;
+    font-size:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#000;
+}
+.wp-toggle-btn:active{ border-color:#808080 #ffffff #ffffff #808080; }
     </style>
   </head>
   <body>
@@ -373,39 +533,30 @@ li.c4 {margin-top: -35px;}
         <div class="clearfix"></div>
       </div>
     </div>
-
 <script>
-// ============音频新增部分============
-// 点击音效
-const tabSwitchSound = new Audio("music/tab_Switch.wav");
-tabSwitchSound.volume = 0.6;
-document.addEventListener("click", ()=>{
-    tabSwitchSound.currentTime = 0;
-    tabSwitchSound.play().catch(e=>{});
+// ============音频部分============
+// 蓝色按钮点击音效
+const btnSelectSound = new Audio("music/btn_Select.wav");
+btnSelectSound.volume = 0.6;
+document.querySelectorAll(".button").forEach(function(btn){
+    btn.addEventListener("click", function(){
+        btnSelectSound.currentTime = 0;
+        btnSelectSound.play().catch(function(e){});
+    });
 });
 
-// 页面随机背景音乐
-const bgMusicList = [
-    "music/letsgo.m4a",
-    "music/psvita.m4a",
-    "music/tolietstory.m4a"
-];
-const bgAudio = new Audio();
-bgAudio.volume = 0.7;
-const randomIndex = Math.floor(Math.random() * bgMusicList.length);
-bgAudio.src = bgMusicList[randomIndex];
-
-let audioStarted = false;
-// 用户交互之后才播放（浏览器策略）
-document.addEventListener("click", function startAudioOnce(){
-    if(!audioStarted){
-        audioStarted = true;
-        bgAudio.play().catch(err=>console.log("背景音乐播放失败",err));
-    }
-},{once:true});
+// 四个标签页切换音效（桌面版 + 平板/手机版）
+const panelRightSound = new Audio("music/snd_panelright.wav");
+panelRightSound.volume = 0.6;
+document.querySelectorAll("li.home-nav-item, .slideshow-nav-item").forEach(function(tab){
+    tab.addEventListener("click", function(){
+        panelRightSound.currentTime = 0;
+        panelRightSound.play().catch(function(e){});
+    });
+});
+// 背景音乐由 WinPlay3 播放器统一控制，见下方播放器脚本
 // =====================================
 </script>
-
 <script src="js/view.js">
 </script><script>
 (function(){if(testCanvas())var footer=new androidExternal.animations.footer(document.getElementById("canvas-android"));var search=new androidSearch;var moremenu=new androidMore})();
@@ -434,5 +585,196 @@ window.___gcfg = {lang: 'en'};
       s.parentNode.insertBefore(po, s);
       })();
     </script>
+
+<!-- ===== WinPlay3 可拖动播放器 ===== -->
+<div id="winplay3-player">
+    <div class="wp-titlebar" id="wpDragHandle">
+        <span class="wp-title">WinPlay3</span>
+        <button class="wp-close" id="wpClose">×</button>
+    </div>
+    <div class="wp-menubar">
+        <span>File</span><span>Options</span><span>Help</span>
+    </div>
+    <div class="wp-lcd">
+        <div class="wp-lcd-top">
+            <span>TRACK</span><span>MIN</span><span>SEC</span><span>MODE</span><span>kHz</span><span>kBit/s</span>
+        </div>
+        <div class="wp-lcd-main">
+            <span id="wp-track-num">01</span>
+            <span id="wp-track-name">---</span>
+            <span id="wp-time">00:00</span>
+        </div>
+    </div>
+    <div class="wp-controls">
+        <div class="wp-buttons">
+            <button class="wp-btn" id="wp-prev" title="Previous">◄◄</button>
+            <button class="wp-btn" id="wp-stop" title="Stop">■</button>
+            <button class="wp-btn" id="wp-play" title="Play/Pause">▶</button>
+            <button class="wp-btn" id="wp-back" title="Back">◄</button>
+            <button class="wp-btn" id="wp-next" title="Next">►►</button>
+        </div>
+        <div class="wp-volume">
+            <input type="range" id="wp-volume" min="0" max="100" value="70" title="Volume">
+        </div>
+    </div>
+</div>
+<button class="wp-toggle-btn" id="wpToggle" title="Music Player">♪</button>
+
+<script>
+// ===== WinPlay3 播放器逻辑 =====
+(function(){
+    var player = document.getElementById("winplay3-player");
+    var toggleBtn = document.getElementById("wpToggle");
+    var closeBtn = document.getElementById("wpClose");
+    var dragHandle = document.getElementById("wpDragHandle");
+    var playBtn = document.getElementById("wp-play");
+    var stopBtn = document.getElementById("wp-stop");
+    var prevBtn = document.getElementById("wp-prev");
+    var nextBtn = document.getElementById("wp-next");
+    var backBtn = document.getElementById("wp-back");
+    var volumeSlider = document.getElementById("wp-volume");
+    var trackNumEl = document.getElementById("wp-track-num");
+    var trackNameEl = document.getElementById("wp-track-name");
+    var timeEl = document.getElementById("wp-time");
+
+    // 音乐列表（与页面背景音乐共用）
+    var musicList = [
+        {file:"music/letsgo.m4a", name:"letsgo"},
+        {file:"music/psvita.m4a", name:"psvita"},
+        {file:"music/tolietstory.m4a", name:"tolietstory"}
+    ];
+    var currentIndex = Math.floor(Math.random() * musicList.length);
+    var audio = new Audio();
+    audio.volume = 0.7;
+    var isPlaying = false;
+    var audioStarted = false;
+
+    function loadTrack(index){
+        currentIndex = (index + musicList.length) % musicList.length;
+        audio.src = musicList[currentIndex].file;
+        trackNumEl.textContent = String(currentIndex + 1).padStart(2,"0");
+        trackNameEl.textContent = musicList[currentIndex].name;
+        timeEl.textContent = "00:00";
+    }
+
+    function playAudio(){
+        audio.play().then(function(){
+            isPlaying = true;
+            playBtn.textContent = "❚❚";
+            playBtn.classList.add("playing");
+        }).catch(function(e){
+            console.log("播放失败", e);
+        });
+    }
+
+    function pauseAudio(){
+        audio.pause();
+        isPlaying = false;
+        playBtn.textContent = "▶";
+        playBtn.classList.remove("playing");
+    }
+
+    function stopAudio(){
+        audio.pause();
+        audio.currentTime = 0;
+        isPlaying = false;
+        playBtn.textContent = "▶";
+        playBtn.classList.remove("playing");
+        timeEl.textContent = "00:00";
+    }
+
+    function nextTrack(){
+        loadTrack(currentIndex + 1);
+        if(isPlaying || audioStarted){ playAudio(); }
+    }
+
+    function prevTrack(){
+        loadTrack(currentIndex - 1);
+        if(isPlaying || audioStarted){ playAudio(); }
+    }
+
+    function formatTime(sec){
+        if(isNaN(sec)) return "00:00";
+        var m = Math.floor(sec / 60);
+        var s = Math.floor(sec % 60);
+        return String(m).padStart(2,"0") + ":" + String(s).padStart(2,"0");
+    }
+
+    audio.addEventListener("timeupdate", function(){
+        timeEl.textContent = formatTime(audio.currentTime);
+    });
+    audio.addEventListener("ended", function(){
+        nextTrack();
+    });
+
+    // 按钮事件
+    playBtn.addEventListener("click", function(){
+        audioStarted = true;
+        if(isPlaying){ pauseAudio(); }
+        else { playAudio(); }
+    });
+    stopBtn.addEventListener("click", stopAudio);
+    nextBtn.addEventListener("click", nextTrack);
+    prevBtn.addEventListener("click", prevTrack);
+    backBtn.addEventListener("click", function(){
+        audio.currentTime = Math.max(0, audio.currentTime - 5);
+    });
+    volumeSlider.addEventListener("input", function(){
+        audio.volume = this.value / 100;
+    });
+
+    // 初始化加载第一首
+    loadTrack(currentIndex);
+
+    // 显示/隐藏
+    toggleBtn.addEventListener("click", function(){
+        player.classList.toggle("show");
+    });
+    closeBtn.addEventListener("click", function(){
+        player.classList.remove("show");
+    });
+
+    // 拖动逻辑
+    var isDragging = false;
+    var dragOffsetX = 0, dragOffsetY = 0;
+    dragHandle.addEventListener("mousedown", function(e){
+        isDragging = true;
+        dragOffsetX = e.clientX - player.offsetLeft;
+        dragOffsetY = e.clientY - player.offsetTop;
+        e.preventDefault();
+    });
+    document.addEventListener("mousemove", function(e){
+        if(!isDragging) return;
+        var newLeft = e.clientX - dragOffsetX;
+        var newTop = e.clientY - dragOffsetY;
+        // 限制在视口内
+        newLeft = Math.max(0, Math.min(window.innerWidth - player.offsetWidth, newLeft));
+        newTop = Math.max(0, Math.min(window.innerHeight - player.offsetHeight, newTop));
+        player.style.left = newLeft + "px";
+        player.style.top = newTop + "px";
+        player.style.right = "auto";
+    });
+    document.addEventListener("mouseup", function(){
+        isDragging = false;
+    });
+
+    // 页面首次点击后自动播放（浏览器策略）
+    document.addEventListener("click", function startOnce(){
+        if(!audioStarted){
+            audioStarted = true;
+            playAudio();
+        }
+    }, {once:true});
+
+    // 暴露到全局，方便页面其他部分调用
+    window.winplay3 = {
+        play: playAudio,
+        pause: pauseAudio,
+        stop: stopAudio,
+        next: nextTrack,
+        prev: prevTrack
+    };
+})();
+</script>
   
 </body></html>
