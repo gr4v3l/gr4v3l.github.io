@@ -273,6 +273,24 @@ li.c4 {margin-top: -35px;}
     border-color:#808080 #ffffff #ffffff #808080;
     padding:1px 0 0 1px;
 }
+/* ===== 语言切换按钮 ===== */
+.lang-switch-btn{
+    background:#c0c0c0;
+    border:2px solid;
+    border-color:#ffffff #808080 #808080 #ffffff;
+    color:#000;
+    font-size:12px;
+    padding:4px 12px;
+    cursor:pointer;
+    font-family:inherit;
+}
+.lang-switch-btn:active{
+    border-color:#808080 #ffffff #ffffff #808080;
+    padding:5px 11px 3px 13px;
+}
+.lang-switch-li{
+    list-style:none;
+}
     </style>
   </head>
   <body>
@@ -282,14 +300,14 @@ li.c4 {margin-top: -35px;}
         <a data-g-event="Nav" data-g-label="Logo" href="http://www.android.com/"><img alt="Android" class="logo" height="16" src="images/logo.png" width="114"></a>
         <ul class="nav-x">
           <li>
-            <a data-g-event="Nav" data-g-label="Discover Android" href="http://www.android.com/about/">Discover
+            <a data-g-event="Nav" data-g-label="Discover Android" href="http://www.android.com/about/" data-zh="探索 Android">Discover
             Android</a>
           </li>
           <li>
-            <a data-g-event="Nav" data-g-label="Devices" href="http://www.android.com/devices/">Browse Devices</a>
+            <a data-g-event="Nav" data-g-label="Devices" href="http://www.android.com/devices/" data-zh="浏览设备">Browse Devices</a>
           </li>
           <li>
-            <a data-g-event="Nav" data-g-label="Get Apps" href="http://www.android.com/apps/">Get Apps</a>
+            <a data-g-event="Nav" data-g-label="Get Apps" href="http://www.android.com/apps/" data-zh="获取应用">Get Apps</a>
           </li>
         </ul>
         <div class="moremenu">
@@ -298,18 +316,18 @@ li.c4 {margin-top: -35px;}
         <div class="morehover" id="moremenu">
           <div class="top" id="morehovertop"></div>
           <div class="mid">
-            <div class="header">
+            <div class="header" data-zh="Android 网站">
               Android Sites
             </div>
             <ul>
               <li class="active">
-                <a href="http://www.android.com/">Android.com</a>
+                <a href="http://www.android.com/" data-zh="Android.com">Android.com</a>
               </li>
               <li>
-                <a href="http://developer.android.com/">Android Developers</a>
+                <a href="http://developer.android.com/" data-zh="Android 开发者">Android Developers</a>
               </li>
               <li>
-                <a href="http://source.android.com/">Android Open Source Project</a>
+                <a href="http://source.android.com/" data-zh="Android 开源项目">Android Open Source Project</a>
               </li>
             </ul>
           </div>
@@ -320,7 +338,7 @@ li.c4 {margin-top: -35px;}
             <div id="search-btn"></div>
             <div class="left"></div>
             <form action="/web/20120707033130/http://www.android.com/search/" id="search" name="search">
-              <input id="q" name="q" placeholder="Search" speech="" type="text" x-webkit-speech="">
+              <input id="q" name="q" placeholder="Search" speech="" type="text" x-webkit-speech="" data-zh="搜索">
             </form>
             <div class="right"></div>
           </div>
@@ -338,15 +356,15 @@ li.c4 {margin-top: -35px;}
                 <canvas height="315" id="canvas-marquee-jb" width="350"></canvas>
               </div>
               <div class="home-marquee-desc">
-                <h2 id="ics-h2">
+                <h2 id="ics-h2" data-zh="介绍 Gravel，<br>一个宅男">
                   Introducing Gravel,<br>
                   The Nerd
                 </h2>
-                <p class="home-marquee-gnode">
+                <p class="home-marquee-gnode" data-zh="欢迎来到我的网站，一个喜欢 Roblox 和 Source 游戏的普通人">
                 Welcome to my website
                A Normal Guy Love roblox and source games </p>
                 <p>
-                  <a class="button" data-g-event="Home Marquee" data-g-label="JB Learn More" href="https://github.com/gr4v3l">Explore what's new</a>
+                  <a class="button" data-g-event="Home Marquee" data-g-label="JB Learn More" href="https://github.com/gr4v3l" data-zh="探索新内容">Explore what's new</a>
                 </p>
               </div>
             </li>
@@ -355,19 +373,19 @@ li.c4 {margin-top: -35px;}
                 <img alt="" class="home-marquee-img-play" src="images/marquee_play.png">
               </div>
               <div class="home-marquee-desc">
-                <h2>
+                <h2 data-zh="Gravel Market 上的游戏和软件">
                   Games and SoftWare on Gravel Market
                 </h2>
-                <p>
+                <p data-zh="探索 Gravel Market 上越来越多的软件和游戏，我们有很多适合旧设备的软件和游戏！">
                   Explore a growing collection software and games on Gravel Market
                     now<br>
                   we have lots software and games for old devices!
                 </p>
                 <p>
-                  <em>Click The Button Try it (WIP)</em>
+                  <em data-zh="点击按钮试试（制作中）">Click The Button Try it (WIP)</em>
                 </p>
                 <p>
-                  <a class="button" data-g-event="Home Marquee" data-g-label="Play magazines" href="https://gr4v3l.github.io/GravelMarket/">Learn more</a>
+                  <a class="button" data-g-event="Home Marquee" data-g-label="Play magazines" href="https://gr4v3l.github.io/GravelMarket/" data-zh="了解更多">Learn more</a>
                 </p>
               </div>
             </li>
@@ -375,7 +393,7 @@ li.c4 {margin-top: -35px;}
               <div class="home-marquee-video" data-video-id="1UhGM2us8eA" id="home-marquee-player">
               </div>
               <div class="home-marquee-page-promo">
-                <p>
+                <p data-zh="4亿台 Android 设备已激活">
                   400 million Android devices activated
                 </p>
               </div>
@@ -385,15 +403,15 @@ li.c4 {margin-top: -35px;}
                 <img alt="" class="home-marquee-img-apps" src="images/tablet.png"> <canvas height="400" id="canvas-marquee-apps" width="424"><img alt="" src="images/sdk-apps.png"></canvas>
               </div>
               <div class="home-marquee-desc">
-                <h2>
+                <h2 data-zh="发现新应用">
                   Discover new apps
                 </h2>
-                <p>
+                <p data-zh="Gravel Market 拥有数十万应用。开始探索定制移动体验的创新方式：提高效率、下载游戏、分享一切。">
                   Gravel Market has hundreds of thousands of apps. Start exploring innovative ways to
                   customize your mobile experience: become more productive, download games, share anything.
                 </p>
                 <p>
-                  <a class="button" data-g-event="Home Marquee" data-g-label="Apps Learn More" href="http://www.android.com/apps/">Learn more</a>
+                  <a class="button" data-g-event="Home Marquee" data-g-label="Apps Learn More" href="http://www.android.com/apps/" data-zh="了解更多">Learn more</a>
                 </p>
               </div>
             </li>
@@ -409,7 +427,7 @@ li.c4 {margin-top: -35px;}
                         <div class="jb"></div>
                       </td>
                       <td>
-                        <p>
+                        <p data-zh="Android 4.1 Jelly Bean">
                           Android 4.1, Jelly Bean
                         </p>
                       </td>
@@ -426,7 +444,7 @@ li.c4 {margin-top: -35px;}
                         <div class="apps"></div>
                       </td>
                       <td>
-                        <p>
+                        <p data-zh="杂志和电视节目">
                           Magazines and TV Shows
                         </p>
                       </td>
@@ -443,7 +461,7 @@ li.c4 {margin-top: -35px;}
                         <div class="android"></div>
                       </td>
                       <td>
-                        <p>
+                        <p data-zh="Android 动力">
                           Android Momentum
                         </p>
                       </td>
@@ -460,7 +478,7 @@ li.c4 {margin-top: -35px;}
                         <div class="video"></div>
                       </td>
                       <td>
-                        <p>
+                        <p data-zh="Android 应用">
                           Apps for Android
                         </p>
                       </td>
@@ -479,54 +497,54 @@ li.c4 {margin-top: -35px;}
           <ul class="carousel-content">
             <li class="home-marquee-carousel-table-and-phone-item c1">
               <img alt="" class="home-marquee-img-ics-tablet-and-phone" src="images/marquee_jb.png">
-              <h2 id="ics-h2">
+              <h2 id="ics-h2" data-zh="介绍 Gravel，<br>一个宅男">
                 Introducing Gravel,<br>
                 The Nerd
               </h2>
-              <p class="home-marquee-gnode">
+              <p class="home-marquee-gnode" data-zh="欢迎来到我的网站，一个喜欢 Roblox 和 Source 游戏的普通人">
                 Welcome to my website
                A Normal Guy Love roblox and source games
               </p>
               <p>
-                <a class="button" data-g-event="Home Marquee" data-g-label="JB Learn More" href="https://github.com/gr4v3l">Explore what's new</a>
+                <a class="button" data-g-event="Home Marquee" data-g-label="JB Learn More" href="https://github.com/gr4v3l" data-zh="探索新内容">Explore what's new</a>
               </p>
             </li>
             <li class="home-marquee-carousel-table-and-phone-item c2">
               <img alt="" class="home-marquee-img-sdk-tablet-and-phone c3" src="images/marquee_play.png">
-              <h2>
+              <h2 data-zh="Gravel Market 上的游戏和软件">
                 Games and SoftWare on Gravel Market
               </h2>
-              <p>
+              <p data-zh="探索 Gravel Market 上越来越多的软件和游戏，我们有很多适合旧设备的软件和游戏！">
                 Explore a growing collection software and games on Gravel Market
                   now<br>
                 we have lots software and games for old devices!
               </p>
               <p>
-                <em>Click The Button Try it (WIP)</em>
+                <em data-zh="点击按钮试试（制作中）">Click The Button Try it (WIP)</em>
               </p>
               <p>
-                <a class="button" data-g-event="Home Marquee" data-g-label="Play magazines" href="https://gr4v3l.github.io/GravelMarket/">Learn more</a>
+                <a class="button" data-g-event="Home Marquee" data-g-label="Play magazines" href="https://gr4v3l.github.io/GravelMarket/" data-zh="了解更多">Learn more</a>
               </p>
             </li>
             <li class="home-marquee-carousel-table-and-phone-item">
               <div class="home-marquee-video-tablet-and-phone" id="home-marquee-player-tablet-and-phone"></div>
               <div class="home-marquee-page-promo">
-                <p>
+                <p data-zh="4亿台 Android 设备已激活">
                   400 million Android devices activated
                 </p>
               </div>
             </li>
             <li class="home-marquee-carousel-table-and-phone-item c4">
               <img alt="" class="home-marquee-img-apps-tablet-and-phone" src="images/marquee_apps_static.png">
-              <h2>
+              <h2 data-zh="发现新应用">
                 Discover new apps
               </h2>
-              <p>
+              <p data-zh="Gravel Market 拥有数十万应用。开始探索定制移动体验的创新方式：提高效率、下载游戏、分享一切。">
                 Gravel Market has hundreds of thousands of apps. Start exploring innovative ways to
                 customize your mobile experience: become more productive, download games, share anything.
               </p>
               <p>
-                <a class="button" data-g-event="Home Marquee" data-g-label="Apps Learn More" href="http://www.android.com/apps/">Learn more</a>
+                <a class="button" data-g-event="Home Marquee" data-g-label="Apps Learn More" href="http://www.android.com/apps/" data-zh="了解更多">Learn more</a>
               </p>
             </li>
           </ul>
@@ -541,19 +559,19 @@ li.c4 {margin-top: -35px;}
       <ul id="nav-x-tablet-and-phone">
         <li>
           <a data-g-event="Nav" data-g-label="Discover Android" href="http://www.android.com/about/">
-          <div class="nav-button-tablet-and-phone button-secondary">
+          <div class="nav-button-tablet-and-phone button-secondary" data-zh="探索 Android">
             Discover Android
           </div></a>
         </li>
         <li>
           <a data-g-event="Nav" data-g-label="Devices" href="http://www.android.com/devices/">
-          <div class="nav-button-tablet-and-phone button-secondary">
+          <div class="nav-button-tablet-and-phone button-secondary" data-zh="浏览设备">
             Browse Devices
           </div></a>
         </li>
         <li>
           <a data-g-event="Nav" data-g-label="Get Apps" href="http://www.android.com/apps/">
-          <div class="nav-button-tablet-and-phone button-secondary">
+          <div class="nav-button-tablet-and-phone button-secondary" data-zh="获取应用">
             Get Apps
           </div></a>
         </li>
@@ -566,8 +584,8 @@ li.c4 {margin-top: -35px;}
               <img alt="" class="cta-img" src="images/icon-partners.png">
             </td>
             <td>
-              <strong id="tier3-title-tablet-and-phone">Partners</strong><br>
-              Access the entire platform source and learn how to contribute.
+              <strong id="tier3-title-tablet-and-phone" data-zh="合作伙伴">Partners</strong><br>
+              <span data-zh="获取完整平台源代码，了解如何贡献。">Access the entire platform source and learn how to contribute.</span>
             </td>
           </tr>
         </tbody></table></a> <a class="cta" data-g-event="Tier3 Link" data-g-label="Developers" href="http://developer.android.com/">
@@ -577,19 +595,19 @@ li.c4 {margin-top: -35px;}
               <img alt="" class="cta-img" src="images/icon-dev.png">
             </td>
             <td>
-              <strong id="tier3-title-tablet-and-phone">Developers</strong><br>
-              All the tools and documentation you need to create Android apps.
+              <strong id="tier3-title-tablet-and-phone" data-zh="开发者">Developers</strong><br>
+              <span data-zh="创建 Android 应用所需的所有工具和文档。">All the tools and documentation you need to create Android apps.</span>
             </td>
           </tr>
-        </tbody></table></a> <a class="cta" data-g-event="Tier3 Link" data-g-label="Google Play" href="http://play.google.com/">
+        </tbody></table></a> <a class="cta" data-g-event="Tier3 Link" data-g-label="GravelMarket" href="https://gr4v3l.github.io/GravelMarket/">
         <table>
           <tbody><tr>
             <td>
               <img alt="" class="cta-img" src="images/icon_play.png">
             </td>
             <td>
-              <strong id="tier3-title-tablet-and-phone">Google Play</strong><br>
-              Find great apps, books, movies and music to enjoy on your device.
+              <strong id="tier3-title-tablet-and-phone" data-zh="GravelMarket">GravelMarket</strong><br>
+              <span data-zh="探索适合旧设备的软件和游戏。">Explore software and games for old devices.</span>
             </td>
           </tr>
         </tbody></table></a>
@@ -600,7 +618,7 @@ li.c4 {margin-top: -35px;}
       <div id="footer-local">
         <ul class="legal">
           <li>
-            <a href="https://gr4v3l.github.io/">Gr4vel-Website based on android.com from 2012 </a>
+            <a href="https://gr4v3l.github.io/" data-zh="Gr4vel 网站基于 2012 年的 android.com">Gr4vel-Website based on android.com from 2012 </a>
           </li>
           <li>
             <a data-g-event="Footer Link" data-g-label="uTOS" href="https://gr4v3l.github.io/">IDK &amp; IDDDDK</a>
@@ -608,14 +626,10 @@ li.c4 {margin-top: -35px;}
         </ul>
         <ul class="social">
           <li>
-            <a href="https://plus.google.com/104629412415657030658/" target="_blank">Android on
-            Google+</a>
+            <a href="https://github.com/gr4v3l" target="_blank">GitHub</a>
           </li>
-          <li class="plus-link">
-            <h5>
-              Share this site:
-            </h5>
-            <div class="g-plusone" data-size="small"></div>
+          <li class="lang-switch-li">
+            <button id="langSwitchBtn" class="lang-switch-btn">🌐 EN / 中文</button>
           </li>
         </ul>
         <div class="clearfix"></div>
@@ -683,6 +697,50 @@ document.querySelectorAll(".marquee-left, .marquee-right").forEach(function(arro
 });
 // 背景音乐由 WinPlay3 播放器统一控制，见下方播放器脚本
 // =====================================
+
+// ===== 语言切换 =====
+var currentLang = "en";
+try{ currentLang = localStorage.getItem("gravel_lang") || "en"; }catch(e){}
+
+function applyLang(lang){
+    currentLang = lang;
+    try{ localStorage.setItem("gravel_lang", lang); }catch(e){}
+    document.querySelectorAll("[data-zh]").forEach(function(el){
+        if(el.tagName === "INPUT"){
+            if(lang === "zh"){
+                if(!el.getAttribute("data-original-en")){
+                    el.setAttribute("data-original-en", el.placeholder);
+                }
+                el.placeholder = el.getAttribute("data-zh");
+            } else {
+                var orig = el.getAttribute("data-original-en");
+                if(orig) el.placeholder = orig;
+            }
+        } else {
+            if(lang === "zh"){
+                if(!el.getAttribute("data-original-en")){
+                    el.setAttribute("data-original-en", el.innerHTML);
+                }
+                el.innerHTML = el.getAttribute("data-zh");
+            } else {
+                var orig = el.getAttribute("data-original-en");
+                if(orig) el.innerHTML = orig;
+            }
+        }
+    });
+    var btn = document.getElementById("langSwitchBtn");
+    if(btn) btn.textContent = lang === "zh" ? "🌐 中文 / EN" : "🌐 EN / 中文";
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+    var btn = document.getElementById("langSwitchBtn");
+    if(btn){
+        btn.addEventListener("click", function(){
+            applyLang(currentLang === "zh" ? "en" : "zh");
+        });
+    }
+    applyLang(currentLang);
+});
 </script>
 <script src="js/view.js">
 </script><script>
@@ -697,20 +755,6 @@ document.querySelectorAll(".marquee-left, .marquee-right").forEach(function(arro
   homePage.setMarqueeItemOffset(-400);
   homePage.decorate(container);
 })();
-    </script><script>
-(function() {
-        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-        po.src = 'https://apis.google.com/js/plusone.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-      })();
-    </script><script>
-window.___gcfg = {lang: 'en'};
-      (function()
-      {var po = document.createElement("script");
-      po.type = "text/javascript"; po.async = true;po.src = "https://apis.google.com/js/plusone.js";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(po, s);
-      })();
     </script>
 
 <!-- ===== WinPlay3 可拖动播放器 ===== -->
